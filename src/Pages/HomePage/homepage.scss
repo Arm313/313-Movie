@@ -1,0 +1,16 @@
+.homepage {
+    overflow: hidden;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 60px;
+
+        &_movies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    }
+}
