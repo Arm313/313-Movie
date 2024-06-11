@@ -11,6 +11,12 @@
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
+            padding-bottom: 60px;
+
+            & h2 {
+                font-size: 30px;
+                margin-top: 60px;
+            }
         }
     }
 }

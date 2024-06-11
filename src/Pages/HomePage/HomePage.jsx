@@ -1,31 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../../Components/Card/Card";
 import Slider from "../../Components/Swiper/Slider";
-import { fetchMoviesNowPlaying } from "../../store/Movies/API";
+import {
+  fetchMoviesNowPlaying,
+  fetchMoviesTopRated,
+  fetchMoviesUpcoming,
+} from "../../store/Movies/API";
 import { selectMovies } from "../../store/Movies/moviesSlice";
-import { API_KEY } from "../../URL/URL";
 import "./homepage.scss";
+import SwiperCard from "../../Components/SwiperCard/SwiperCard";
 
 const HomePage = () => {
-  const [data, setData] = useState([]);
   const dispatch = useDispatch();
-  const { nowPlaying } = useSelector(selectMovies);
+  const { nowPlaying, popular, topRated, upcoming } = useSelector(selectMovies);
 
   useEffect(() => {
     dispatch(fetchMoviesNowPlaying());
+    dispatch(fetchMoviesTopRated());
+    dispatch(fetchMoviesUpcoming());
   }, []);
 
-  console.log("nowPlaying:", nowPlaying);
   return (
     <div className="homepage">
       <Slider />
       <div className="homepage_container maxWidth">
         <div className="homepage_container_movies">
-          {nowPlaying?.length > 0 &&
-            nowPlaying.map((mov, i) => {
-              return <Card item={mov} key={mov.id} />;
-            })}
+          <h2> Top Rated Movies</h2>
+          <SwiperCard item={topRated} />
+          <h2> Upcoming Movies</h2>
+          <SwiperCard item={upcoming} />
+          <h2> Popular Movies</h2>
+          <SwiperCard item={popular} />
+          <h2> Now Playing Movies</h2>
+          <SwiperCard item={nowPlaying} />
         </div>
       </div>
     </div>

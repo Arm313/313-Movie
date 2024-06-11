@@ -1,0 +1,44 @@
+ .homepage_container_movies {
+     overflow: hidden;
+
+     & .swiper {
+         width: 100%;
+         height: 100%;
+     }
+
+     & .swiper-slide {
+         font-size: 18px;
+         display: flex;
+         //  justify-content: center;
+         align-items: center;
+         overflow: hidden;
+         height: 280px;
+
+         & img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+             object-position: bottom;
+         }
+
+         & .seeAll {
+
+             width: 100%;
+             height: 100%;
+             background: #2a2541;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: 35px;
+             color: #100e19;
+             writing-mode:vertical-rl;
+             text-orientation: mixed;
+             cursor: pointer;
+
+         }
+
+     }
+
+
+
+ }

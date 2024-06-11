@@ -2,15 +2,23 @@ import React from "react";
 import { IMG_URL } from "../../URL/URL";
 import "./card.scss";
 
-
-
 const Card = ({ item }) => {
+  let title =
+    item.original_title.length > 19
+      ? item.original_title.slice(0, 19) + "..."
+      : item.original_title;
+  let rating = Math.ceil(item.vote_average * 10);
   return (
     <div className="card">
+      <div className="card_hover">
+        <h3>WATCH</h3>
+        <div className="card_hover_rating">{rating}%</div>
+        <div className="card_hover_date">{item.release_date}</div>
+      </div>
       <div className="card_image">
         <img src={`${IMG_URL}${item.poster_path}`} alt="" />
       </div>
-      <h5>{item.original_title}</h5>
+      <h5>{title}</h5>
       <span>Бесплатно</span>
     </div>
   );

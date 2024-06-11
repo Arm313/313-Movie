@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMoviesNowPlaying, fetchMoviesPopular } from "./API";
+import { fetchMoviesNowPlaying, fetchMoviesPopular, fetchMoviesTopRated, fetchMoviesUpcoming } from "./API";
 
 const initialState = {
   isLoading: false,
   popular: [],
   nowPlaying: [],
+  topRated: [],
+  upcoming: []
 };
 
 export const moviesSlice = createSlice({
@@ -17,6 +19,12 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(fetchMoviesNowPlaying.fulfilled, (state, { payload }) => {
       state.nowPlaying = payload.results;
+    });
+    builder.addCase(fetchMoviesTopRated.fulfilled, (state, { payload }) => {
+      state.topRated = payload.results;
+    });
+    builder.addCase(fetchMoviesUpcoming.fulfilled, (state, { payload }) => {
+      state.upcoming = payload.results;
     });
   },
 });
