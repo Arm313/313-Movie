@@ -14,6 +14,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import Card from "../Card/Card";
 
 const SwiperCard = ({ item }) => {
+  const fifteenPieces = item?.slice(0, 15);
   return (
     <Swiper
       slidesPerView={6}
@@ -22,19 +23,17 @@ const SwiperCard = ({ item }) => {
       modules={[Pagination, Navigation]}
       className="mySwiper"
     >
-      {item?.length > 0 &&
-        item.map((mov, i) => {
+      {fifteenPieces?.length > 0 &&
+        fifteenPieces.map((mov, i) => {
           return (
             <SwiperSlide key={mov.id}>
               <Card item={mov} />
             </SwiperSlide>
           );
         })}
-        <SwiperSlide>
-          <div className="seeAll">
-            See All
-          </div>
-        </SwiperSlide>
+      <SwiperSlide>
+        <div className="seeAll">See All</div>
+      </SwiperSlide>
     </Swiper>
   );
 };

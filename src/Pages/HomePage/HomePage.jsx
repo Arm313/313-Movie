@@ -9,15 +9,29 @@ import {
 import { selectMovies } from "../../store/Movies/moviesSlice";
 import "./homepage.scss";
 import SwiperCard from "../../Components/SwiperCard/SwiperCard";
+import { selectTv } from "../../store/TV/TVSlice";
+import {
+  fetchTVAiringToday,
+  fetchTVOnTheAir,
+  fetchTVPopular,
+  fetchTVTopRated,
+} from "../../store/TV/API";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const { nowPlaying, popular, topRated, upcoming } = useSelector(selectMovies);
+  const { airingToday, onTheAir, popularTV, topRatedTV } =
+    useSelector(selectTv);
 
   useEffect(() => {
     dispatch(fetchMoviesNowPlaying());
     dispatch(fetchMoviesTopRated());
     dispatch(fetchMoviesUpcoming());
+
+    dispatch(fetchTVAiringToday());
+    dispatch(fetchTVOnTheAir());
+    dispatch(fetchTVPopular());
+    dispatch(fetchTVTopRated());
   }, []);
 
   return (
@@ -33,6 +47,14 @@ const HomePage = () => {
           <SwiperCard item={popular} />
           <h2> Now Playing Movies</h2>
           <SwiperCard item={nowPlaying} />
+          <h2> TV Top Rated</h2>
+          <SwiperCard item={topRatedTV} />
+          <h2> TV Airing Today</h2>
+          <SwiperCard item={airingToday} />
+          <h2> TV Popular</h2>
+          <SwiperCard item={popularTV} />
+          <h2> TV On The Air</h2>
+          <SwiperCard item={onTheAir} />
         </div>
       </div>
     </div>
