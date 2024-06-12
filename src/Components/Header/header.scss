@@ -12,7 +12,7 @@
     z-index: 9999;
 
 
-    &:has(.header_left_navbar_item:hover, .header_left_navbar_item_showBox:hover) {
+    &:has(.header_left_navbar_item:not(.header_left_navbar_item:last-child):hover, .header_left_navbar_item_showBox:hover) {
         background-color: #1f1b2e;
     }
 
@@ -24,6 +24,7 @@
         &_logo {
             font-family: "Righteous";
             font-size: 35px;
+            color: #fff;
         }
 
         &_navbar {

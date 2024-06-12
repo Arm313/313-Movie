@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { IMG_URL } from "../../URL/URL";
 import "./card.scss";
 
@@ -13,7 +14,7 @@ const Card = ({ item }) => {
 
   let date = item?.release_date || item?.first_air_date;
   return (
-    <div className="card">
+    <NavLink to={`watch/${item.id}`} className="card">
       <div className="card_hover">
         <h3>WATCH</h3>
         <div className="card_hover_rating">{rating}%</div>
@@ -24,7 +25,7 @@ const Card = ({ item }) => {
       </div>
       <h5>{title}</h5>
       <span>Бесплатно</span>
-    </div>
+    </NavLink>
   );
 };
 

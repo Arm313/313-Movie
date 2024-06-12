@@ -11,7 +11,7 @@ import { selectGenres } from "../../store/GENRES/genresSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const {moviesGenres, tvGenres} = useSelector(selectGenres);
+  const { moviesGenres, tvGenres } = useSelector(selectGenres);
 
   useEffect(() => {
     dispatch(fetchGetMoviesGenres());
@@ -21,27 +21,25 @@ const Header = () => {
   return (
     <div className="header maxWidth">
       <div className="header_left">
-        <div className="header_left_logo">313</div>
+        <NavLink to="/" className="header_left_logo">
+          313
+        </NavLink>
         <div className="header_left_navbar">
-          <NavLink to="/" className="header_left_navbar_item">
+          <NavLink to="/movies" className="header_left_navbar_item">
             Movies
           </NavLink>
           <NavBarShowBox item={moviesGenres} />
-          <NavLink to="/" className="header_left_navbar_item">
-            TV Series
+          <NavLink to="/series" className="header_left_navbar_item">
+            Series
           </NavLink>
           <NavBarShowBox item={tvGenres} />
 
-          <NavLink to="/" className="header_left_navbar_item">
+          <NavLink to="/persons" className="header_left_navbar_item">
             Persons
           </NavLink>
-          <div className="header_left_navbar_item_showBox">3</div>
         </div>
       </div>
       <div className="header_rigth">
-        {/* <button className="header_rigth_button">
-          Смотреть 30 дней бесплатно
-        </button> */}
         <div className="header_rigth_search">
           <IoSearch size="20px" />
           <span>Search</span>
