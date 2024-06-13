@@ -1,0 +1,16 @@
+.moviesPage {
+
+    & h1 {
+        text-align: center;
+    }
+
+  &  h2 {
+        font-size: 30px;
+        margin-top: 60px;
+        margin-bottom: 15px;
+        
+        & .card {
+            border-radius: 20px;
+        }
+    }
+}

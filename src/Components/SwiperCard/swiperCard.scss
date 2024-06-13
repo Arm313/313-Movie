@@ -1,4 +1,4 @@
- .homepage_container_movies {
+ .homepage_container_movies, .moviesPage {
      overflow: hidden;
 
      & .swiper {
@@ -9,10 +9,10 @@
      & .swiper-slide {
          font-size: 18px;
          display: flex;
-         //  justify-content: center;
          align-items: center;
          overflow: hidden;
          height: 280px;
+         border-radius: 20px;
 
          & img {
              width: 100%;

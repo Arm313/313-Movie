@@ -14,7 +14,7 @@ const Card = ({ item }) => {
 
   let date = item?.release_date || item?.first_air_date;
   return (
-    <NavLink to={`watch/${item.id}`} className="card">
+    <NavLink to={`/watch/${item.id}`} className="card">
       <div className="card_hover">
         <h3>WATCH</h3>
         <div className="card_hover_rating">{rating}%</div>

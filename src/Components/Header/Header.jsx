@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./header.scss";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineNotifications } from "react-icons/md";
@@ -11,12 +11,17 @@ import { selectGenres } from "../../store/GENRES/genresSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { moviesGenres, tvGenres } = useSelector(selectGenres);
 
   useEffect(() => {
     dispatch(fetchGetMoviesGenres());
     dispatch(fetchGetTVGenres());
   }, []);
+
+  const navlink_series = () => {
+    navigate("/series", {state: {name: "series"}})
+  }
 
   return (
     <div className="header maxWidth">
@@ -29,9 +34,9 @@ const Header = () => {
             Movies
           </NavLink>
           <NavBarShowBox item={moviesGenres} />
-          <NavLink to="/series" className="header_left_navbar_item">
+          <div onClick={navlink_series} className="header_left_navbar_item">
             Series
-          </NavLink>
+          </div>
           <NavBarShowBox item={tvGenres} />
 
           <NavLink to="/persons" className="header_left_navbar_item">

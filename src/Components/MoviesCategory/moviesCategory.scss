@@ -1,0 +1,10 @@
+.moviesCategory {
+
+    &_data {
+
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+}

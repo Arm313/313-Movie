@@ -1,19 +1,14 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React, { memo, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import './styles.css';
 import "./swiperCard.scss";
-
-// import required modules
 import { Navigation, Pagination } from "swiper/modules";
 import Card from "../Card/Card";
+import { NavLink } from "react-router-dom";
 
-const SwiperCard = ({ item }) => {
+const SwiperCard =memo( ({ item, path }) => {
+  
   const fifteenPieces = item?.slice(0, 15);
   return (
     <Swiper
@@ -32,10 +27,10 @@ const SwiperCard = ({ item }) => {
           );
         })}
       <SwiperSlide>
-        <div className="seeAll">See All</div>
+        <NavLink to={`/movies/${path}`} className="seeAll" >See All</NavLink>
       </SwiperSlide>
     </Swiper>
   );
-};
+});
 
 export default SwiperCard;
