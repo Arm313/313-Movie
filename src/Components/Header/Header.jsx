@@ -33,11 +33,11 @@ const Header = () => {
           <NavLink to="/movies" className="header_left_navbar_item">
             Movies
           </NavLink>
-          <NavBarShowBox item={moviesGenres} />
+          <NavBarShowBox item={moviesGenres} page="Movies" />
           <div onClick={navlink_series} className="header_left_navbar_item">
             Series
           </div>
-          <NavBarShowBox item={tvGenres} />
+          <NavBarShowBox item={tvGenres} page="Series" />
 
           <NavLink to="/persons" className="header_left_navbar_item">
             Persons

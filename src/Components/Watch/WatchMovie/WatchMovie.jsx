@@ -10,7 +10,7 @@ const WatchMovie = () => {
   const { videos, production_companies, title } = watch;
   const findMovie = videos?.results?.find((i) => i?.type === "Trailer");
   
-  // if (!watch || !videos) return <Loader />;
+  if (!watch || !videos) return <Loader />;
   return (
     <div className="watch_movie">
       <div className="watch_movie_left">

@@ -33,8 +33,7 @@ const WatchSerie = () => {
     };
 
     fetchData();
-
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }, [id, dispatch]);
 
   // if (isLoading) {

@@ -37,11 +37,11 @@ const Watch = () => {
     };
 
     fetchData();
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }, [id, dispatch]);
 
   if (isLoading) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading"></div>;
   }
 
   if (error) {

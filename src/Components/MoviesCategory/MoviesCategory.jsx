@@ -37,33 +37,12 @@ const MoviesCategory = () => {
     
   ]);
 
-  // const uniqueAllSeries = useMemo(() => {
-  //   const allSeries = [
-  //     ...airing_today,
-  //     ...on_the_air,
-  //     ...state?.popular,
-  //     ...state?.top_rated,
-  //     ,
-  //   ];
-
-  //   const uniqueSeriesArray = allSeries.filter(
-  //     (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-  //   );
-
-  //   return uniqueSeriesArray;
-  // }, [airing_today, on_the_air, state?.popular, state?.top_rated]);
-
   const pathToDataMap = {
     "now-playing": now_playing,
     popular: popular,
     "top-rated": top_rated,
     upcoming: upcoming,
     "all-movies": uniqueAllMovies,
-    // "top-rated-tv": state?.top_rated,
-    // "airingt-today": airing_today,
-    // "popular-tv": popular?.popular,
-    // "on-the-air": on_the_air,
-    // "all-series": uniqueAllSeries,
     "similar-movie": watch?.similar?.results,
   };
 

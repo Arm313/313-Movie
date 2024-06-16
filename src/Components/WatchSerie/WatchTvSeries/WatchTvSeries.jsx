@@ -8,14 +8,14 @@ import noImage from "../../../utils/notposterImage.jpg";
 const WatchTvSeries = () => {
   const { watch_tv, isLoading } = useSelector(selectTv);
   const { videos, production_companies, name } = watch_tv;
-  // if (!watch_tv || !videos) return <Loader />;
+  // if ( !videos) return <Loader />;
   const findMovie = videos?.results?.find((i) => i?.type === "Trailer");
 
   return (
     <div className="watch_movie">
       <div className="watch_movie_left">
         <div className="watch_movie_left_video">
-          {findMovie ? (
+          {findMovie?.key ? (
             <iframe
               src={`https://www.youtube.com/embed/${findMovie?.key}`}
               title={name}

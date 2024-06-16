@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IMG_URL } from "../../URL/URL";
 import { fetchAllMovies, fetchMoviesPopular } from "../../store/Movies/API";
 import { selectMovies } from "../../store/Movies/moviesSlice";
-import noImage from "../../utils/notposterImage.jpg"
+import noImage from "../../utils/notposterImage.jpg";
+import { NavLink } from "react-router-dom";
 
 const Slider = () => {
   const dispatch = useDispatch();
@@ -33,11 +34,15 @@ const Slider = () => {
     >
       {popular?.length > 0 &&
         popular.map((mov) => {
-          const image = mov.backdrop_path ? `${IMG_URL}${mov.backdrop_path}` : noImage
+          const image = mov.backdrop_path
+            ? `${IMG_URL}${mov.backdrop_path}`
+            : noImage;
           return (
             <SwiperSlide key={mov.id}>
-              <img src={image} alt="" />
-              <h2>{mov.title} </h2>
+              <NavLink to={`/watch/${mov.id}`}>
+                <img src={image} alt="" />
+                <h2>{mov.title} </h2>
+              </NavLink>
             </SwiperSlide>
           );
         })}
