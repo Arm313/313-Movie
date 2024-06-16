@@ -1,0 +1,35 @@
+.actorCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 20px;
+    border-radius: 10px;
+    width: 150px;
+    color: #ffffff7a;
+
+    &_image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center !important;
+        }
+    }
+
+    &_name {
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 10px;
+
+    }
+
+    & span {
+        font-size: 12px;
+    }
+}

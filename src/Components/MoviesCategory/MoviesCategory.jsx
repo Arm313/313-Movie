@@ -9,26 +9,19 @@ import "./moviesCategory.scss";
 
 const MoviesCategory = () => {
   const { path } = useParams();
-  const { nowPlaying, popular, topRated, upcoming } = useSelector(selectMovies);
-  const { airingToday, onTheAir, popularTV, topRatedTV } =
-    useSelector(selectTv);
+  const { now_playing, popular, top_rated, upcoming, watch } =
+    useSelector(selectMovies);
 
   useEffect(() => {
     ScrollTop();
   }, []);
 
-//   const allSerias = [...airingToday, ...onTheAir, ...popularTV, ...topRatedTV];
-  //   const allMovies = [...nowPlaying, ...popular, ...topRated, ...upcoming];
- const uniqueAllMovies = useMemo(() => {
+  const uniqueAllMovies = useMemo(() => {
     const allMovies = [
-      ...nowPlaying,
+      ...now_playing,
       ...popular,
-      ...topRated,
+      ...top_rated,
       ...upcoming,
-      ...airingToday,
-      ...onTheAir,
-      ...popularTV,
-      ...topRatedTV,
     ];
 
     const uniqueMoviesArray = allMovies.filter(
@@ -37,42 +30,41 @@ const MoviesCategory = () => {
 
     return uniqueMoviesArray;
   }, [
-    nowPlaying,
+    now_playing,
     popular,
-    topRated,
+    top_rated,
     upcoming,
-    airingToday,
-    onTheAir,
-    popularTV,
-    topRatedTV,
+    
   ]);
 
-  const uniqueAllSeries = useMemo(() => {
-    const allSeries = [
-      ...airingToday,
-      ...onTheAir,
-      ...popularTV,
-      ...topRatedTV,
-    ];
+  // const uniqueAllSeries = useMemo(() => {
+  //   const allSeries = [
+  //     ...airing_today,
+  //     ...on_the_air,
+  //     ...state?.popular,
+  //     ...state?.top_rated,
+  //     ,
+  //   ];
 
-    const uniqueSeriesArray = allSeries.filter(
-      (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-    );
+  //   const uniqueSeriesArray = allSeries.filter(
+  //     (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
+  //   );
 
-    return uniqueSeriesArray;
-  }, [airingToday, onTheAir, popularTV, topRatedTV]); 
+  //   return uniqueSeriesArray;
+  // }, [airing_today, on_the_air, state?.popular, state?.top_rated]);
 
   const pathToDataMap = {
-    "now-playing": nowPlaying,
+    "now-playing": now_playing,
     popular: popular,
-    "top-rated": topRated,
+    "top-rated": top_rated,
     upcoming: upcoming,
     "all-movies": uniqueAllMovies,
-    "top-rated-tv": airingToday,
-    "airingt-today": onTheAir,
-    "popular-tv": popularTV,
-    "on-the-air": topRatedTV,
-    "all-series": uniqueAllSeries,
+    // "top-rated-tv": state?.top_rated,
+    // "airingt-today": airing_today,
+    // "popular-tv": popular?.popular,
+    // "on-the-air": on_the_air,
+    // "all-series": uniqueAllSeries,
+    "similar-movie": watch?.similar?.results,
   };
 
   const pageName = path.replaceAll("-", " ").toUpperCase();

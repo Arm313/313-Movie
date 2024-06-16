@@ -1,14 +1,14 @@
 import React, { memo } from "react";
+import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "./swiperCard.scss";
 import { Navigation, Pagination } from "swiper/modules";
-import Card from "../Card/Card";
-import { NavLink } from "react-router-dom";
+import ActorCard from "../ActorCard/ActorCard";
+import "./swiperActors.css";
 
-const SwiperCard = memo(({ item, path }) => {
-  const fifteenPieces = item?.slice(0, 15);
+const SwiperActors = memo(({ actors, path = "" }) => {
+  const fifteenPieces = actors?.slice(0, 15);
   return (
     <Swiper
       slidesPerView={6}
@@ -16,48 +16,45 @@ const SwiperCard = memo(({ item, path }) => {
       navigation={true}
       modules={[Pagination, Navigation]}
       className="mySwiper"
-      slidesPerGroup={5}
+      slidesPerGroup={6} 
       breakpoints={{
         320: {
           slidesPerView: 1,
           slidesPerGroup: 1,
-          spaceBetween: 10,
+          spaceBetween: 10
         },
         480: {
           slidesPerView: 2,
           slidesPerGroup: 2,
-          spaceBetween: 20,
+          spaceBetween: 20
         },
         640: {
           slidesPerView: 4,
           slidesPerGroup: 4,
-          spaceBetween: 30,
+          spaceBetween: 30
         },
         1024: {
           slidesPerView: 6,
           slidesPerGroup: 5,
-          spaceBetween: 40,
-        },
+          spaceBetween: 40
+        }
       }}
     >
-      
-      {fifteenPieces?.length > 0 &&
-        fifteenPieces.map((mov, i) => {
+      {actors?.length > 0 &&
+        actors.map((actor, i) => {
           return (
-            <SwiperSlide key={mov.id}>
-              <Card item={mov} />
+            <SwiperSlide style={{height: "auto"}} key={actor.id}>
+              <ActorCard actor={actor} />
             </SwiperSlide>
           );
         })}
-      {fifteenPieces?.length > 0 && (
-        <SwiperSlide>
-          <NavLink to={`/${item?.oiginal_title ? "movies" : "series"}/${path}`} className="seeAll">
-            See All
-          </NavLink>
-        </SwiperSlide>
-      )}
+      {/* <SwiperSlide>
+        <NavLink to={`/movies/${path}`} className="seeAll">
+          See All
+        </NavLink>
+      </SwiperSlide> */}
     </Swiper>
   );
 });
 
-export default SwiperCard;
+export default SwiperActors;

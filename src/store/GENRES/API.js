@@ -22,3 +22,4 @@ export const fetchGetTVGenres = createAsyncThunk(
     return jsonResult.genres;
   }
 );
+

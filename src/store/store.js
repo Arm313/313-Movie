@@ -9,7 +9,7 @@ const store = configureStore(
     reducer: {
       genres: genresReducer,
       movies: moviesReducer,
-      tvShow: tvShowReduer
+      tvShow: tvShowReduer,
     },
   },
 

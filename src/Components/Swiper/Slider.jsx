@@ -7,23 +7,23 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { IMG_URL } from "../../URL/URL";
-import { fetchMoviesPopular } from "../../store/Movies/API";
+import { fetchAllMovies, fetchMoviesPopular } from "../../store/Movies/API";
 import { selectMovies } from "../../store/Movies/moviesSlice";
+import noImage from "../../utils/notposterImage.jpg"
 
 const Slider = () => {
-  const { popular } = useSelector(selectMovies);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchMoviesPopular());
+    dispatch(fetchAllMovies({ property: "popular", page: 40 }));
   }, []);
+  const { popular } = useSelector(selectMovies);
 
   return (
     <Swiper
       rewind={true}
       navigation={true}
       modules={[Navigation, Autoplay]}
-      className="mySwiper"
+      className="bannerSwiper"
       spaceBetween={30}
       centeredSlides={true}
       autoplay={{
@@ -33,9 +33,10 @@ const Slider = () => {
     >
       {popular?.length > 0 &&
         popular.map((mov) => {
+          const image = mov.backdrop_path ? `${IMG_URL}${mov.backdrop_path}` : noImage
           return (
             <SwiperSlide key={mov.id}>
-              <img src={`${IMG_URL}${mov.backdrop_path}`} alt="" />
+              <img src={image} alt="" />
               <h2>{mov.title} </h2>
             </SwiperSlide>
           );

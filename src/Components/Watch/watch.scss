@@ -1,0 +1,155 @@
+.watch {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    &_similar {
+        h2 {
+            margin-bottom: 20px;
+        }
+    }
+
+    &_movie {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+
+        &_left {
+            display: flex;
+            flex-direction: column;
+            width: 65%;
+
+            &_video {
+                height: 500px;
+                width: 100%;
+
+                iframe , img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &_companies {
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                margin-top: 30px;
+
+
+                &_company {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+
+                    &_h4 {
+                        color: #ffffff7a;
+                        font-size: 8px;
+                    }
+
+                    &_logo {
+                        width: 100px;
+                        height: 100px;
+                        background-color: #1f1b2e;
+                        border-radius: 20px;
+                        overflow: hidden;
+
+                        & img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+        &_description {
+            max-width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            h1 {
+                font-size: 50px;
+                text-align: center;
+            }
+
+            &_runtime {
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+
+                & span {
+                    font-size: 25px;
+                    color: #ffffff7a;
+                }
+            }
+
+            &_genres {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                & span {
+                    color: #ffffff7a;
+                    font-size: 18px;
+                }
+            }
+
+            &_rating_and_vote {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                &_rating,
+                &_vote {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    font-size: 25px;
+                    color: #ffffff7a;
+
+                    span {
+
+                        background-color: #1f1b2e;
+                        padding: 8px 12px;
+                        border-radius: 7px;
+                    }
+
+                }
+            }
+
+            &_revenue_budget {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 50px;
+
+                &_revenue,
+                &_budget {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    font-size: 25px;
+                    color: #ffffff7a;
+
+                    span {
+
+                        background-color: #1f1b2e;
+                        padding: 8px 12px;
+                        border-radius: 7px;
+                    }
+
+                }
+            }
+
+        }
+    }
+}

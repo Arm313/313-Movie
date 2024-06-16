@@ -1,33 +1,29 @@
 import React, { useEffect } from "react";
-import "./watch.scss";
+import "./watchSerie.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchGetMovie } from "../../store/Movies/API";
-import { selectMovies } from "../../store/Movies/moviesSlice";
 import SwiperCard from "../SwiperCard/SwiperCard";
-import WatchMovie from "./WatchMovie/WatchMovie";
 import SwiperActors from "../SwiperActors/SwiperActors";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
+import { fetchGetSeries } from "../../store/TV/API";
+import { selectTv } from "../../store/TV/TVSlice";
+import WatchTvSeries from "./WatchTvSeries/WatchTvSeries";
 
-const Watch = () => {
+const WatchSerie = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { watch, isLoading, error } = useSelector(selectMovies);
-  const { similar, recommendations, credits } = watch;
-
-  useEffect(() => {
-    ScrollTop();
-  }, []);
+  const { watch_tv, isLoading, error } = useSelector(selectTv);
+  const { similar, recommendations, credits } = watch_tv;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await Promise.all([
-          dispatch(fetchGetMovie({ id })),
-          dispatch(fetchGetMovie({ id, property: "videos" })),
-          dispatch(fetchGetMovie({ id, property: "similar" })),
-          dispatch(fetchGetMovie({ id, property: "recommendations" })),
-          dispatch(fetchGetMovie({ id, property: "credits" })),
+          dispatch(fetchGetSeries({ id })),
+          dispatch(fetchGetSeries({ id, property: "videos" })),
+          dispatch(fetchGetSeries({ id, property: "similar" })),
+          dispatch(fetchGetSeries({ id, property: "recommendations" })),
+          dispatch(fetchGetSeries({ id, property: "credits" })),
         ]);
         // All fetches are done here
       } catch (error) {
@@ -37,12 +33,13 @@ const Watch = () => {
     };
 
     fetchData();
+
     window.scrollTo(0,0)
   }, [id, dispatch]);
 
-  if (isLoading) {
-    return <div className="loading">Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div className="loading">Loading...</div>;
+  // }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -50,7 +47,7 @@ const Watch = () => {
 
   return (
     <div className="watch maxWidth">
-      <WatchMovie />
+      <WatchTvSeries />
       {similar?.results?.length > 0 && (
         <div className="watch_similar">
           <h2>Similar Movies</h2>
@@ -74,4 +71,4 @@ const Watch = () => {
   );
 };
 
-export default Watch;
+export default WatchSerie;

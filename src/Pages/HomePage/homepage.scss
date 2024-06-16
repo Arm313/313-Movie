@@ -7,20 +7,20 @@
         gap: 50px;
 
         &_movies {
-            display: flex;
+            // display: flex;
             flex-wrap: wrap;
             gap: 15px;
             padding-bottom: 60px;
-     overflow: hidden;
+            overflow: hidden;
 
-            
 
-           & h2 {
+
+            & h2 {
                 font-size: 30px;
                 margin-top: 60px;
             }
 
-            
+
         }
     }
 }

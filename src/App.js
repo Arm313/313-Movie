@@ -2,22 +2,32 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import AppRouter from "./Routes/AppRouter";
-import { fetchMoviesNowPlaying, fetchMoviesPopular, fetchMoviesTopRated, fetchMoviesUpcoming } from "./store/Movies/API";
-import { fetchTVAiringToday, fetchTVOnTheAir, fetchTVPopular, fetchTVTopRated } from "./store/TV/API";
+import {
+  fetchAllMovies,
+} from "./store/Movies/API";
+import {
+  fetchAllSeries,
+} from "./store/TV/API";
 
 function App() {
-  const dispatch = useDispatch()
-  
-  useEffect(() => {
-    dispatch(fetchMoviesPopular());
-    dispatch(fetchMoviesNowPlaying());
-    dispatch(fetchMoviesTopRated());
-    dispatch(fetchMoviesUpcoming());
+  const dispatch = useDispatch();
 
-    dispatch(fetchTVAiringToday());
-    dispatch(fetchTVOnTheAir());
-    dispatch(fetchTVPopular());
-    dispatch(fetchTVTopRated());
+  useEffect(() => {
+    dispatch(fetchAllMovies({property: "popular", page: 1}));
+    dispatch(fetchAllMovies({property: "top_rated", page: 1}));
+    dispatch(fetchAllMovies({property: "now_playing", page: 1}));
+    dispatch(fetchAllMovies({property: "upcoming", page: 1}));
+    
+    dispatch(fetchAllSeries({property: "popular", page: 1}));
+    dispatch(fetchAllSeries({property: "airing_today", page: 1}));
+    dispatch(fetchAllSeries({property: "top_rated", page: 1}));
+    dispatch(fetchAllSeries({property: "on_the_air", page: 1}));
+    // dispatch(fetchTVAiringToday());
+    // dispatch(fetchTVOnTheAir());
+    // dispatch(fetchTVPopular());
+    // dispatch(fetchTVTopRated());
+
+    
   }, []);
   return (
     <div className="App">
@@ -27,6 +37,3 @@ function App() {
 }
 
 export default App;
-
-// https://api.themoviedb.org/3/movie/157336?api_key=6d6201b781767bb726386a018def2080
-// https://api.themoviedb.org/3/movie/343611?&append_to_response=videos&api_key=6d6201b781767bb726386a018def2080

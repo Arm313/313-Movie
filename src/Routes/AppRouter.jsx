@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MoviesCategory from "../Components/MoviesCategory/MoviesCategory";
+import SeriesCategory from "../Components/SeriesCategory/SeriesCategory";
 import Watch from "../Components/Watch/Watch";
+import WatchSerie from "../Components/WatchSerie/WatchSerie";
 import HomePage from "../Pages/HomePage/HomePage";
 import Layout from "../Pages/Layout";
 import MoviesPage from "../Pages/MoviesPage/MoviesPage";
@@ -17,11 +19,11 @@ const AppRouter = () => {
           <Route path="movies" element={<MoviesPage />} />
           <Route path="movies/:path" element={<MoviesCategory />} />
           <Route path="watch/:id" element={<Watch />} />
-          <Route path="series" element={<MoviesPage />} />
-          <Route path="series/:path" element={<MoviesCategory />} />
-          {/* <Route path="watch/:id" element={<Watch />} /> */}
+          <Route path="series" element={<SeriesPage />} />
+          <Route path="series/:path" element={<SeriesCategory />} />
+          <Route path="watchtv/:id" element={<WatchSerie />} />
           <Route path="persons" element={<PersonsPage />} />
-          {/* <Route path="watch/:id" element={<Watch />} /> */}
+        <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
     </div>

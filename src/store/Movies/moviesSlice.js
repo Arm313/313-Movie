@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMoviesNowPlaying, fetchMoviesPopular, fetchMoviesTopRated, fetchMoviesUpcoming } from "./API";
+import {
+  fetchAllMovies,
+  fetchGetMovie,
+} from "./API";
 
 const initialState = {
   isLoading: false,
   popular: [],
-  nowPlaying: [],
-  topRated: [],
-  upcoming: []
+  now_playing: [],
+  top_rated: [],
+  upcoming: [],
+  watch: {},
+  error: null
 };
 
 export const moviesSlice = createSlice({
@@ -14,18 +19,33 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchMoviesPopular.fulfilled, (state, { payload }) => {
-      state.popular = payload.results;
+    builder.addCase(fetchAllMovies.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(fetchMoviesNowPlaying.fulfilled, (state, { payload }) => {
-      state.nowPlaying = payload.results;
+    builder.addCase(fetchAllMovies.fulfilled, (state, { payload }) => {
+      const { data, property } = payload;
+      state[property] = data.results;
+      state.isLoading = false;
     });
-    builder.addCase(fetchMoviesTopRated.fulfilled, (state, { payload }) => {
-      state.topRated = payload.results;
+    builder.addCase(fetchAllMovies.rejected, (state, action) => {
+      state.isLoading = false;
+        state.error = action.error.message;
     });
-    builder.addCase(fetchMoviesUpcoming.fulfilled, (state, { payload }) => {
-      state.upcoming = payload.results;
+    builder.addCase(fetchGetMovie.pending, (state) => {
+      state.isLoading = true;
     });
+    builder.addCase(fetchGetMovie.fulfilled, (state, { payload }) => {
+      const { data, property } = payload;
+      property ? state.watch[property] = data : (state.watch = data);
+      state.isLoading = false;
+    });
+    
+    builder.addCase(fetchGetMovie.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
+
+    
   },
 });
 

@@ -1,44 +1,43 @@
- .homepage_container_movies, .moviesPage {
-     overflow: hidden;
+//  .homepage_container_movies, .moviesPage 
+.maxWidth {
 
-     & .swiper {
-         width: 100%;
-         height: 100%;
-     }
+    & .swiper {
+        width: 100%;
+    }
 
-     & .swiper-slide {
-         font-size: 18px;
-         display: flex;
-         align-items: center;
-         overflow: hidden;
-         height: 280px;
-         border-radius: 20px;
+    & .swiper-slide {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        height: 280px;
+        border-radius: 20px;
 
-         & img {
-             width: 100%;
-             height: 100%;
-             object-fit: cover;
-             object-position: bottom;
-         }
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+        }
 
-         & .seeAll {
+        & .seeAll {
 
-             width: 100%;
-             height: 100%;
-             background: #2a2541;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             font-size: 35px;
-             color: #100e19;
-             writing-mode:vertical-rl;
-             text-orientation: mixed;
-             cursor: pointer;
+            width: 100%;
+            height: 100%;
+            background: #2a2541;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            color: #100e19;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            cursor: pointer;
 
-         }
+        }
 
-     }
-
+    }
 
 
- }
+
+}

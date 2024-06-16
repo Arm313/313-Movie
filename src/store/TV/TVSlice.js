@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTVAiringToday, fetchTVOnTheAir, fetchTVPopular, fetchTVTopRated } from "./API";
+import { fetchAllSeries, fetchGetSeries } from "./API";
 
 const initialState = {
   isLoading: false,
-  airingToday: [],
-  onTheAir: [],
-  popularTV: [],
-  topRatedTV: []
+  airing_today: [],
+  on_the_air: [],
+  popular: [],
+  top_rated: [],
+  watch_tv: {}
 };
 
 export const TVSlice = createSlice({
@@ -14,17 +15,20 @@ export const TVSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchTVAiringToday.fulfilled, (state, { payload }) => {
-      state.airingToday = payload.results;
+    builder.addCase(fetchAllSeries.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(fetchTVOnTheAir.fulfilled, (state, { payload }) => {
-      state.onTheAir = payload.results;
+    builder.addCase(fetchAllSeries.fulfilled, (state, { payload }) => {
+      const { data, property } = payload;
+      state[property] = data.results;
+      state.isLoading = false;
     });
-    builder.addCase(fetchTVPopular.fulfilled, (state, { payload }) => {
-      state.popularTV = payload.results;
-    });
-    builder.addCase(fetchTVTopRated.fulfilled, (state, { payload }) => {
-      state.topRatedTV = payload.results;
+
+
+    builder.addCase(fetchGetSeries.fulfilled, (state, { payload }) => {
+      const { data, property } = payload;
+      property ? state.watch_tv[property] = data : (state.watch_tv = data);
+      state.isLoading = false;
     });
   },
 });
