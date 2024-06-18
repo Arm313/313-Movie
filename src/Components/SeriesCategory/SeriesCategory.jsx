@@ -4,43 +4,29 @@ import { useParams } from "react-router-dom";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { selectTv } from "../../store/TV/TVSlice";
 import Card from "../Card/Card";
+import PaginationJsx from "../PaginationJsx/PaginationJsx";
 
 const SeriesCategory = () => {
   const { path } = useParams();
-  const { airing_today, popular, top_rated, on_the_air, wacth_tv } =
+  const { airing_today, popular, top_rated, on_the_air, wacth_tv, pages } =
     useSelector(selectTv);
-
   useEffect(() => {
     ScrollTop();
   }, []);
 
-  const uniqueAllSeries = useMemo(() => {
-    const allMovies = [
-      ...airing_today,
-      ...popular,
-      ...top_rated,
-      ...on_the_air,
-    ];
-
-    const uniqueSeriesArray = allMovies.filter(
-      (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-    );
-
-    return uniqueSeriesArray;
-  }, [airing_today, popular, top_rated, on_the_air]);
-
   const pathToDataMap = {
-    "top-rated-tv": top_rated,
-    "airingt-today": airing_today,
-    "popular-tv": popular,
-    "on-the-air": on_the_air,
-    "all-series": uniqueAllSeries,
-    "similar-movie": wacth_tv?.similar?.results,
+    top_rated_tv: top_rated,
+    airingt_today: airing_today,
+    popular_tv: popular,
+    on_the_air: on_the_air,
+    similar: wacth_tv?.similar,
+    recommendations: wacth_tv?.recommendations
   };
 
-  const pageName = path.replaceAll("-", " ").toUpperCase();
+  const pageName = path.replaceAll("_", " ").toUpperCase();
+  const data = pathToDataMap[path]?.results || [];
+  const { page, total_pages } = pathToDataMap[path] || 1;
 
-  const data = pathToDataMap[path] || [];
   return (
     <div className="moviesCategory maxWidth">
       <h1>{pageName}</h1>
@@ -51,6 +37,7 @@ const SeriesCategory = () => {
             return <Card key={i.id} item={i} />;
           })}
       </div>
+      <PaginationJsx page={page} total_pages={total_pages} path={path} />
     </div>
   );
 };

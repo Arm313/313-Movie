@@ -7,8 +7,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import Card from "../Card/Card";
 import { NavLink } from "react-router-dom";
 
-const SwiperCard = memo(({ item, path }) => {
-  const fifteenPieces = item?.slice(0, 15);
+const SwiperCard = memo(({ item, path, type, itemId }) => {
+  const fifteenPieces = item?.slice(0, 15);  
   return (
     <Swiper
       slidesPerView={6}
@@ -49,9 +49,9 @@ const SwiperCard = memo(({ item, path }) => {
             </SwiperSlide>
           );
         })}
-      {fifteenPieces?.length > 0 && (
+      {fifteenPieces?.length > 14 && (
         <SwiperSlide>
-          <NavLink to={`/${item?.oiginal_title ? "movies" : "series"}/${path}`} className="seeAll">
+          <NavLink to={`/${type === "movies" ? "movies" : "series"}/${path}`} className="seeAll">
             See All
           </NavLink>
         </SwiperSlide>

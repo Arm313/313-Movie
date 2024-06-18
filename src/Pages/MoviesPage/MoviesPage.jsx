@@ -1,41 +1,60 @@
 import React, { memo, useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoviesAllSlider from "../../Components/MoviesAllSlider/MoviesAllSlider";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import SwiperCard from "../../Components/SwiperCard/SwiperCard";
 import { selectMovies } from "../../store/Movies/moviesSlice";
 import "./moviesPage.scss";
+import { Outlet, useParams } from "react-router-dom";
+import { fetchAllMovies } from "../../store/Movies/API";
 
 const MoviesPage = memo(() => {
   const { now_playing, popular, top_rated, upcoming } =
     useSelector(selectMovies);
+  const { path } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getData = async () => {
+      await dispatch(fetchAllMovies({ property: "now_playing", page: 1 }));
+      await dispatch(fetchAllMovies({ property: "popular", page: 1 }));
+      await dispatch(fetchAllMovies({ property: "top_rated", page: 1 }));
+      await dispatch(fetchAllMovies({ property: "upcoming", page: 1 }));
+    };
+    getData();
   });
-  const uniqueAllMovies = useMemo(() => {
-    const allMovies = [...now_playing, ...popular, ...top_rated, ...upcoming];
+  // const uniqueAllMovies = useMemo(() => {
+  //   const allMovies = [
+  //     ...now_playing?.results,
+  //     ...popular?.results,
+  //     ...top_rated?.results,
+  //     ...upcoming?.results,
+  //   ];
 
-    const uniqueMoviesArray = allMovies.filter(
-      (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-    );
+  //   const uniqueMoviesArray = allMovies.filter(
+  //     (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
+  //   );
 
-    return uniqueMoviesArray;
-  }, [now_playing, popular, top_rated, upcoming, ,]);
+  //   return uniqueMoviesArray;
+  // }, [
+  //   now_playing?.results,
+  //   popular?.results,
+  //   top_rated?.results,
+  //   upcoming?.results,
+  // ]);
   return (
     <div className="moviesPage maxWidth">
-      <h1> Movies Watch Online</h1>
-      <div className="moviesPage_allMovies">
-        <h2> All Movies</h2>
-        <SwiperCard item={uniqueAllMovies} path={`all-series`} />
-      </div>
-
       <MoviesAllSlider
-        top_rated={top_rated}
-        upcoming={upcoming}
-        popular={popular}
-        now_playing={now_playing}
+        top_rated={top_rated?.results}
+        upcoming={upcoming?.results}
+        popular={popular?.results}
+        now_playing={now_playing?.results}
       />
+      <Outlet />
     </div>
   );
 });

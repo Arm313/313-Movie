@@ -10,13 +10,13 @@ const MoviesAllSlider = () => {
   return (
     <>
       <h2> Top Rated Movies</h2>
-      <SwiperCard item={top_rated} path={"top-rated"} />
+      <SwiperCard item={top_rated?.results} path={"top_rated"} type={"movies"} />
       <h2> Upcoming Movies</h2>
-      <SwiperCard item={upcoming} path={"upcoming"} />
+      <SwiperCard item={upcoming?.results} path={"upcoming"} type={"movies"} />
       <h2> Popular Movies</h2>
-      <SwiperCard item={popular} path={"popular"} />
+      <SwiperCard item={popular.results} path={"popular"} type={"movies"} />
       <h2> Now Playing Movies</h2>
-      <SwiperCard item={now_playing} path={"now-playing"} />
+      <SwiperCard item={now_playing?.results} path={"now_playing"} type={"movies"} />
     </>
   );
 };

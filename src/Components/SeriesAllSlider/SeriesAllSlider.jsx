@@ -8,13 +8,13 @@ const SeriesAllSlider = () => {
   return (
     <>
       <h2> TV Top Rated</h2>
-      <SwiperCard item={top_rated} path={"top-rated-tv"} />
+      <SwiperCard item={top_rated?.results} path={"top_rated_tv"} type={"series"} />
       <h2> TV Airing Today</h2>
-      <SwiperCard item={airing_today} path={"airingt-today"} />
+      <SwiperCard item={airing_today?.results} path={"airingt_today"} type={"series"} />
       <h2> TV Popular</h2>
-      <SwiperCard item={popular} path={"popular-tv"} />
+      <SwiperCard item={popular?.results} path={"popular_tv"} type={"series"} />
       <h2> TV On The Air</h2>
-      <SwiperCard item={on_the_air} path={"on-the-air"} />
+      <SwiperCard item={on_the_air?.results} path={"on_the_air"} type={"series"} />
     </>
   );
 };

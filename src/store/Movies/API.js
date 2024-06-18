@@ -4,7 +4,7 @@ import { API_KEY, BASE_URL } from "../../URL/URL";
 export const fetchAllMovies = createAsyncThunk(
   "movies/fetchAllMovies",
   async (mov) => {
-    const { page, property } = mov;
+    const { page = 1, property } = mov;
     const result = await fetch(
       `${BASE_URL}/movie/${property}?language=en-US&page=${page}${API_KEY}`
     );

@@ -13,7 +13,7 @@ const store = configureStore(
     },
   },
 
-  applyMiddleware(thunk)
+  // applyMiddleware(thunk)
 );
 
 export default store;

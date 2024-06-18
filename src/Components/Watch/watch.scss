@@ -23,15 +23,38 @@
                 height: 500px;
                 width: 100%;
 
-                iframe , img{
+                iframe,
+                img {
                     width: 100%;
                     height: 100%;
+                }
+
+                & .skeletonDiv{
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+
+                    & .notVideo {
+                       width: 100%;
+                       height: 100%;
+                       background-color: #c9c9c92b;
+                       position: absolute;
+                       left: 0;
+                       top: 0;
+                       text-transform: capitalize;
+                       font-size: 30px;
+                       letter-spacing: 7px;
+                       display: flex;
+                       align-items: center;
+                       justify-content: center;
+                    }
                 }
             }
 
             &_companies {
                 display: flex;
                 justify-content: center;
+                flex-wrap: wrap;
                 gap: 40px;
                 margin-top: 30px;
 
@@ -53,6 +76,13 @@
                         background-color: #1f1b2e;
                         border-radius: 20px;
                         overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 40px;
+                        font-weight: 900;
+                        padding: 10px;
+                        color: #ffffff7a;
 
                         & img {
                             width: 100%;

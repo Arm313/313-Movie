@@ -8,6 +8,8 @@ import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { fetchGetSeries } from "../../store/TV/API";
 import { selectTv } from "../../store/TV/TVSlice";
 import WatchTvSeries from "./WatchTvSeries/WatchTvSeries";
+import { setLoading, setLoadingTrue } from "../../store/Movies/moviesSlice";
+import Loader from "../Loader/Loader";
 
 const WatchSerie = () => {
   const { id } = useParams();
@@ -18,17 +20,17 @@ const WatchSerie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await Promise.all([
-          dispatch(fetchGetSeries({ id })),
-          dispatch(fetchGetSeries({ id, property: "videos" })),
-          dispatch(fetchGetSeries({ id, property: "similar" })),
-          dispatch(fetchGetSeries({ id, property: "recommendations" })),
-          dispatch(fetchGetSeries({ id, property: "credits" })),
-        ]);
-        // All fetches are done here
+        setLoading(true)
+
+        await dispatch(fetchGetSeries({ id }));
+        await dispatch(fetchGetSeries({ id, property: "videos" }));
+        await dispatch(fetchGetSeries({ id, property: "similar" }));
+        await dispatch(fetchGetSeries({ id, property: "recommendations" }));
+        await dispatch(fetchGetSeries({ id, property: "credits" }));
       } catch (error) {
-        // Handle any errors here
         console.error("Failed to fetch movie data", error);
+      } finally {
+        setLoading(false)
       }
     };
 
@@ -36,13 +38,15 @@ const WatchSerie = () => {
     window.scrollTo(0, 0);
   }, [id, dispatch]);
 
+
   // if (isLoading) {
   //   return <div className="loading">Loading...</div>;
   // }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+
+  if (isLoading) return <Loader />;
+  
+
 
   return (
     <div className="watch maxWidth">
@@ -50,13 +54,13 @@ const WatchSerie = () => {
       {similar?.results?.length > 0 && (
         <div className="watch_similar">
           <h2>Similar Movies</h2>
-          <SwiperCard item={similar?.results} path="similar-movie" />
+          <SwiperCard item={similar?.results} path="similar" type={"series"} />
         </div>
       )}
       {recommendations?.results?.length > 0 && (
         <div className="watch_similar">
           <h2>Recommendations Movies</h2>
-          <SwiperCard item={recommendations?.results} path="similar-movie" />
+          <SwiperCard item={recommendations?.results} path="recommendations" type={"series"} />
         </div>
       )}
 

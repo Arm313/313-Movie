@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { IMG_URL } from "../../URL/URL";
-import { fetchAllMovies, fetchMoviesPopular } from "../../store/Movies/API";
+import { fetchAllMovies, fetchMoviestop_rated } from "../../store/Movies/API";
 import { selectMovies } from "../../store/Movies/moviesSlice";
 import noImage from "../../utils/notposterImage.jpg";
 import { NavLink } from "react-router-dom";
@@ -15,9 +15,13 @@ import { NavLink } from "react-router-dom";
 const Slider = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllMovies({ property: "popular", page: 40 }));
+    const getSliderMovies = async () => {
+      await dispatch(fetchAllMovies({ property: "top_rated", page: 40 }));
+    };
+
+    getSliderMovies();
   }, []);
-  const { popular } = useSelector(selectMovies);
+  const { top_rated } = useSelector(selectMovies);
 
   return (
     <Swiper
@@ -32,8 +36,8 @@ const Slider = () => {
         disableOnInteraction: false,
       }}
     >
-      {popular?.length > 0 &&
-        popular.map((mov) => {
+      {top_rated?.results?.length > 0 &&
+        top_rated?.results.map((mov) => {
           const image = mov.backdrop_path
             ? `${IMG_URL}${mov.backdrop_path}`
             : noImage;

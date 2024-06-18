@@ -5,17 +5,17 @@ import { IMG_URL } from "../../../URL/URL";
 import Loader from "../../Loader/Loader";
 import SerieDescription from "../SerieDescription/SerieDescription";
 import noImage from "../../../utils/notposterImage.jpg";
+import { Skeleton } from "@mui/material";
 const WatchTvSeries = () => {
   const { watch_tv, isLoading } = useSelector(selectTv);
   const { videos, production_companies, name } = watch_tv;
-  // if ( !videos) return <Loader />;
   const findMovie = videos?.results?.find((i) => i?.type === "Trailer");
 
   return (
     <div className="watch_movie">
       <div className="watch_movie_left">
         <div className="watch_movie_left_video">
-          {findMovie?.key ? (
+        {findMovie ? (
             <iframe
               src={`https://www.youtube.com/embed/${findMovie?.key}`}
               title={name}
@@ -25,7 +25,15 @@ const WatchTvSeries = () => {
               allowFullScreen
             ></iframe>
           ) : (
-            <img src={noImage} alt="" />
+            <div className="skeletonDiv">
+              <Skeleton
+                sx={{ bgcolor: "grey.900" }}
+                variant="rectangular"
+                width={"100%"}
+                height={"100%"}
+              />
+              <div className="notVideo">this movie has no video</div>
+            </div>
           )}
         </div>
         <div className="watch_movie_left_companies">

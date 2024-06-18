@@ -7,7 +7,6 @@ import { fetchAllSeries } from "./store/TV/API";
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const fetchData = async () => {
       try {

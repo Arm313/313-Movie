@@ -1,54 +1,38 @@
 import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { selectMovies } from "../../store/Movies/moviesSlice";
-import { selectTv } from "../../store/TV/TVSlice";
 import Card from "../Card/Card";
+import PaginationJsx from "../PaginationJsx/PaginationJsx";
 import "./moviesCategory.scss";
 
 const MoviesCategory = () => {
   const { path } = useParams();
-  const { now_playing, popular, top_rated, upcoming, watch } =
+  const { now_playing, popular, top_rated, upcoming, watch, pages } =
     useSelector(selectMovies);
+
+  const pathToDataMap = {
+    now_playing: now_playing,
+    popular: popular,
+    top_rated: top_rated,
+    upcoming: upcoming,
+    similar: watch?.similar,
+    recommendations: watch?.recommendations
+  };
+
+  const pageName = path.replaceAll("_", " ").toUpperCase();
+
+  const data = pathToDataMap[path]?.results || [];
+  const { page, total_pages } = pathToDataMap[path] || 1;
 
   useEffect(() => {
     ScrollTop();
-  }, []);
-
-  const uniqueAllMovies = useMemo(() => {
-    const allMovies = [
-      ...now_playing,
-      ...popular,
-      ...top_rated,
-      ...upcoming,
-    ];
-
-    const uniqueMoviesArray = allMovies.filter(
-      (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-    );
-
-    return uniqueMoviesArray;
-  }, [
-    now_playing,
-    popular,
-    top_rated,
-    upcoming,
-    
-  ]);
-
-  const pathToDataMap = {
-    "now-playing": now_playing,
-    popular: popular,
-    "top-rated": top_rated,
-    upcoming: upcoming,
-    "all-movies": uniqueAllMovies,
-    "similar-movie": watch?.similar?.results,
+  }, [page]);
+  const navigate = useNavigate();
+  const handelChangePage = async (e, value) => {
+    navigate(`/movies/${path}/${value}?`);
   };
-
-  const pageName = path.replaceAll("-", " ").toUpperCase();
-
-  const data = pathToDataMap[path] || [];
   return (
     <div className="moviesCategory maxWidth">
       <h1>{pageName}</h1>
@@ -59,6 +43,7 @@ const MoviesCategory = () => {
             return <Card key={i.id} item={i} />;
           })}
       </div>
+      <PaginationJsx page={page} total_pages={total_pages} path={path} />
     </div>
   );
 };

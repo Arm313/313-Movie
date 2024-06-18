@@ -3,15 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IMG_URL } from "../../URL/URL";
 import "./card.scss";
 import noImage from "../../utils/no-image.png";
+import { Skeleton } from "@mui/material";
 
 const Card = ({ item }) => {
-  // let title =
-  //   item?.original_title?.length > 19
-  //     ? item?.original_title?.slice(0, 18) + "..."
-  //     : item?.original_title || item?.original_name?.length > 19
-  //     ? item?.original_title?.slice(0, 19) + "..."
-  //     : item?.original_name;
-
   let title = "Unknow ";
   if (item?.original_title?.length > 19) {
     title = item.original_title.slice(0, 18) + "...";
@@ -41,7 +35,16 @@ const Card = ({ item }) => {
         <div className="card_hover_date">{date}</div>
       </div>
       <div className="card_image">
-        <img src={image} alt="" />
+        {image ? (
+          <img src={image} alt="image" />
+        ) : (
+          <Skeleton
+            sx={{ bgcolor: "grey.900" }}
+            variant="rectangular"
+            width={"100%"}
+            height={"100%"}
+          />
+        )}
       </div>
       <h5>{title}</h5>
       <span>Бесплатно</span>
