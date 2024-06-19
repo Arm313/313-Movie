@@ -14,22 +14,36 @@ const SerieDescription = () => {
     budget,
     revenue,
     overview,
+    first_air_date,
+    last_air_date,
+    episode_run_time,
+    number_of_seasons,
+    number_of_episodes,
   } = watch_tv;
 
-  const formatMovieRuntime = (runtimeInMinutes) => {
-    const hours = Math.floor(runtimeInMinutes / 60);
-    const minutes = runtimeInMinutes % 60;
-    return `${hours}h ${minutes}m`;
-  };
-
-  const movieYear = release_date?.split("-")[0];
+  const firstDate = first_air_date?.split("-")[0];
+  const lastDate = last_air_date?.split("-")[0];
   const rating = Math.ceil(vote_average * 10);
   return (
     <div className="watch_movie_description">
       <h1> {name} </h1>
-      <div className="watch_movie_description_runtime">
-        {/* <span>{formatMovieRuntime(runtime)}</span> */}
-        <span>{movieYear}</span>
+      <div
+        className="watch_movie_description_runtime"
+        style={{
+          flexDirection: "column",
+        }}
+      >
+        {firstDate && <span> First Air Date - {firstDate}</span>}
+        {lastDate && <span> Last Air Date - {lastDate}</span>}
+        {number_of_seasons && (
+          <span> Number Of Seasons - {number_of_seasons}</span>
+        )}
+        {number_of_episodes && (
+          <span> Number Of Episodes - {number_of_episodes}</span>
+        )}
+        {episode_run_time && (
+          <span>Episode Run Time - {episode_run_time[0]} min</span>
+        )}
       </div>
       <div className="watch_movie_description_genres">
         <span>{origin_country} - </span>
@@ -48,10 +62,20 @@ const SerieDescription = () => {
       <div className="watch_movie_description_overview">{overview}</div>
       <div className="watch_movie_description_revenue_budget">
         <div className="watch_movie_description_revenue_budget_budget">
-       {budget &&  <p> <span>{budget} $</span> Budget</p>}   
+          {budget && (
+            <p>
+              {" "}
+              <span>{budget} $</span> Budget
+            </p>
+          )}
         </div>
         <div className="watch_movie_description_revenue_budget_revenue">
-          {revenue &&  <p> <span>{revenue} $</span> revenue</p>}
+          {revenue && (
+            <p>
+              {" "}
+              <span>{revenue} $</span> revenue
+            </p>
+          )}
         </div>
       </div>
     </div>

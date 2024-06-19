@@ -2,20 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectTv } from "../../../store/TV/TVSlice";
 import { IMG_URL } from "../../../URL/URL";
-import Loader from "../../Loader/Loader";
 import SerieDescription from "../SerieDescription/SerieDescription";
-import noImage from "../../../utils/notposterImage.jpg";
 import { Skeleton } from "@mui/material";
 const WatchTvSeries = () => {
   const { watch_tv, isLoading } = useSelector(selectTv);
-  const { videos, production_companies, name } = watch_tv;
+  const { videos, production_companies, name, seasons } = watch_tv;
   const findMovie = videos?.results?.find((i) => i?.type === "Trailer");
-
+console.log(watch_tv);
   return (
     <div className="watch_movie">
       <div className="watch_movie_left">
         <div className="watch_movie_left_video">
-        {findMovie ? (
+          {!isLoading ? (
             <iframe
               src={`https://www.youtube.com/embed/${findMovie?.key}`}
               title={name}
@@ -35,6 +33,20 @@ const WatchTvSeries = () => {
               <div className="notVideo">this movie has no video</div>
             </div>
           )}
+        </div>
+        <div className="seasons">
+          {seasons?.length > 0 &&
+            seasons?.map((s) => {
+              return (
+                <div key={s.id} className="seasons_item">
+                  <div className="seasons_item_img">
+                    <img src={IMG_URL + s.poster_path} alt={s.name} />
+                  </div>
+                  <h3>Season {s.season_number + 1}</h3>
+                  <p>{s.episode_count} Episodes</p>
+                </div>
+              );
+            })}
         </div>
         <div className="watch_movie_left_companies">
           {production_companies?.map((comp) => {

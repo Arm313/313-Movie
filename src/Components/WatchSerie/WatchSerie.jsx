@@ -4,23 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SwiperCard from "../SwiperCard/SwiperCard";
 import SwiperActors from "../SwiperActors/SwiperActors";
-import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { fetchGetSeries } from "../../store/TV/API";
 import { selectTv } from "../../store/TV/TVSlice";
 import WatchTvSeries from "./WatchTvSeries/WatchTvSeries";
-import { setLoading, setLoadingTrue } from "../../store/Movies/moviesSlice";
+import { setLoading } from "../../store/Movies/moviesSlice";
 import Loader from "../Loader/Loader";
 
 const WatchSerie = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { watch_tv, isLoading, error } = useSelector(selectTv);
+  const { watch_tv, isLoading } = useSelector(selectTv);
   const { similar, recommendations, credits } = watch_tv;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
 
         await dispatch(fetchGetSeries({ id }));
         await dispatch(fetchGetSeries({ id, property: "videos" }));
@@ -30,7 +29,7 @@ const WatchSerie = () => {
       } catch (error) {
         console.error("Failed to fetch movie data", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -39,7 +38,7 @@ const WatchSerie = () => {
   }, [id, dispatch]);
 
   if (isLoading) return <Loader />;
-  
+
   return (
     <div className="watch maxWidth">
       <WatchTvSeries />
@@ -52,7 +51,11 @@ const WatchSerie = () => {
       {recommendations?.results?.length > 0 && (
         <div className="watch_similar">
           <h2>Recommendations Movies</h2>
-          <SwiperCard item={recommendations?.results} path="recommendations" type={"series"} />
+          <SwiperCard
+            item={recommendations?.results}
+            path="recommendations"
+            type={"series"}
+          />
         </div>
       )}
 
