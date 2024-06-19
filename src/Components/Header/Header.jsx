@@ -39,9 +39,9 @@ const Header = () => {
           </div>
           <NavBarShowBox item={tvGenres} page="Series" />
 
-          <NavLink to="/persons" className="header_left_navbar_item">
+          {/* <NavLink to="/persons" className="header_left_navbar_item">
             Persons
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
       <div className="header_rigth">
