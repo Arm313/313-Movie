@@ -15,9 +15,9 @@ const SeriesCategory = () => {
   }, []);
 
   const pathToDataMap = {
-    top_rated_tv: top_rated,
+    top_rated: top_rated,
     airingt_today: airing_today,
-    popular_tv: popular,
+    popular: popular,
     on_the_air: on_the_air,
     similar: wacth_tv?.similar,
     recommendations: wacth_tv?.recommendations

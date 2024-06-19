@@ -18,23 +18,6 @@ import SeriesPage from "../Pages/SeriesPage/SeriesPage";
 const AppRouter = () => {
   return (
     <div>
-      {/* <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="movies" element={<MoviesPage />} />
-          <Route path="movies/:path" element={<MoviesCategory />} />
-          <Route path="movies/:path/:page?" element={<h1>page</h1>} />
-          <Route path="watch/:id" element={<Watch />} />
-          <Route path="series" element={<SeriesPage />} />
-          <Route path="series/:path" element={<SeriesCategory />} />
-          <Route path="watchtv/:id" element={<WatchSerie />} />
-          <Route path="genres/:genre" element={<MoviesInGenres />} />
-          <Route path="genres-series/:genre" element={<SeriesInGenres />} />
-          <Route path="persons" element={<PersonsPage />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
-        </Route>
-      </Routes> */}
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

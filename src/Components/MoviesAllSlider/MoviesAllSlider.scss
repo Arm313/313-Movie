@@ -1,0 +1,10 @@
+.navlinkPath{
+    font-size: 30px;
+    color: #fff;
+    letter-spacing: 5px;
+    transition: all .3s;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

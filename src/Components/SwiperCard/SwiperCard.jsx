@@ -8,7 +8,7 @@ import Card from "../Card/Card";
 import { NavLink } from "react-router-dom";
 
 const SwiperCard = memo(({ item, path, type, itemId }) => {
-  const fifteenPieces = item?.slice(0, 15);  
+  const fifteenPieces = item?.slice(0, 15);
   return (
     <Swiper
       slidesPerView={6}
@@ -40,7 +40,6 @@ const SwiperCard = memo(({ item, path, type, itemId }) => {
         },
       }}
     >
-      
       {fifteenPieces?.length > 0 &&
         fifteenPieces.map((mov, i) => {
           return (
@@ -49,13 +48,17 @@ const SwiperCard = memo(({ item, path, type, itemId }) => {
             </SwiperSlide>
           );
         })}
-      {fifteenPieces?.length > 14 && (
-        <SwiperSlide>
-          <NavLink to={`/${type === "movies" ? "movies" : "series"}/${path}`} className="seeAll">
-            See All
-          </NavLink>
-        </SwiperSlide>
-      )}
+      {(path !== "similar" && path !== "recommendations") &&
+        fifteenPieces?.length > 14 && (
+          <SwiperSlide>
+            <NavLink
+              to={`/${type === "movies" ? "movies" : "series"}/${path}`}
+              className="seeAll"
+            >
+              See All
+            </NavLink>
+          </SwiperSlide>
+        )}
     </Swiper>
   );
 });

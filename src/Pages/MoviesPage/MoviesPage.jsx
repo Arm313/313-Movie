@@ -27,25 +27,7 @@ const MoviesPage = memo(() => {
     };
     getData();
   });
-  // const uniqueAllMovies = useMemo(() => {
-  //   const allMovies = [
-  //     ...now_playing?.results,
-  //     ...popular?.results,
-  //     ...top_rated?.results,
-  //     ...upcoming?.results,
-  //   ];
 
-  //   const uniqueMoviesArray = allMovies.filter(
-  //     (movie, index, self) => index === self.findIndex((m) => m.id === movie.id)
-  //   );
-
-  //   return uniqueMoviesArray;
-  // }, [
-  //   now_playing?.results,
-  //   popular?.results,
-  //   top_rated?.results,
-  //   upcoming?.results,
-  // ]);
   return (
     <div className="moviesPage maxWidth">
       <MoviesAllSlider

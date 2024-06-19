@@ -18,7 +18,7 @@ const MoviesCategory = () => {
     top_rated: top_rated,
     upcoming: upcoming,
     similar: watch?.similar,
-    recommendations: watch?.recommendations
+    recommendations: watch?.recommendations,
   };
 
   const pageName = path.replaceAll("_", " ").toUpperCase();
@@ -36,14 +36,14 @@ const MoviesCategory = () => {
   return (
     <div className="moviesCategory maxWidth">
       <h1>{pageName}</h1>
-
       <div className="moviesCategory_data">
         {data?.length > 0 &&
           data.map((i) => {
             return <Card key={i.id} item={i} />;
           })}
       </div>
-      <PaginationJsx page={page} total_pages={total_pages} path={path} />
+      <PaginationJsx page={page} total_pages={total_pages} path={path} /> 
+      {/* kinoyi id poxancel vor similar recommendations hamar pagination grel */}
     </div>
   );
 };

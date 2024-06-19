@@ -11,7 +11,6 @@ const PaginationPages = () => {
   const navigate = useNavigate();
 
   const { path, page } = useParams();
-  console.log('page:', page, path)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const PaginationPages = () => {
     getPagesData();
   }, [page]);
   const handelChangePage = async (e, value) => {
-    navigate(`/movies/${path}/${value}?`);
+    navigate(`/${path === "movies" ? "movies" : "series"}/${path}/${value}?`);
   };
 
   const pageName = path.replaceAll("_", " ").toUpperCase();

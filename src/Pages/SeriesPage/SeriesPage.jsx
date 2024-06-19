@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SwiperCard from "../../Components/SwiperCard/SwiperCard";
-// import "./moviesPage.scss";
 import { selectTv } from "../../store/TV/TVSlice";
 import SeriesAllSlider from "../../Components/SeriesAllSlider/SeriesAllSlider";
 import { fetchAllMovies } from "../../store/Movies/API";

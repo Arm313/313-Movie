@@ -38,16 +38,8 @@ const WatchSerie = () => {
     window.scrollTo(0, 0);
   }, [id, dispatch]);
 
-
-  // if (isLoading) {
-  //   return <div className="loading">Loading...</div>;
-  // }
-
-
   if (isLoading) return <Loader />;
   
-
-
   return (
     <div className="watch maxWidth">
       <WatchTvSeries />

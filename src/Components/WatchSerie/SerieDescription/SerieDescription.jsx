@@ -6,7 +6,6 @@ const SerieDescription = () => {
   const { watch_tv } = useSelector(selectTv);
   const {
     name,
-    // runtime,
     release_date,
     origin_country,
     genres,
