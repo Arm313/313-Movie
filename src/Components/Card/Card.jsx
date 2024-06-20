@@ -18,7 +18,7 @@ const Card = ({ item }) => {
   }
 
   let rating = Math.ceil(item?.vote_average * 10);
-  let date = item?.release_date || item?.first_air_date;
+  let date = item?.release_date?.split("-")[0] || item?.first_air_date?.split("-")[0];
 
   const image = item?.poster_path ? `${IMG_URL}${item?.poster_path}` : noImage;
 
@@ -31,7 +31,7 @@ const Card = ({ item }) => {
     <div onClick={watchMovie} className="card">
       <div className="card_hover">
         <h3>WATCH</h3>
-        <div className="card_hover_rating">{rating}%</div>
+        {rating > 0 && <div className="card_hover_rating">{rating}%</div>}
         <div className="card_hover_date">{date}</div>
       </div>
       <div className="card_image">

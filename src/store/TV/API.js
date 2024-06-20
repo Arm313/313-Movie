@@ -28,3 +28,14 @@ export const fetchGetSeries = createAsyncThunk(
     return { data: jsonRes, property: property };
   }
 );
+
+export const fetchSearchSeries = createAsyncThunk(
+  "series/fetchSearchSeries",
+  async ({ query, page = 1 }) => {
+    let url = `${BASE_URL}/search/tv?query=${query}&include_adult=false&language=en-US&page=${page}${API_KEY}`;
+
+    const result = await fetch(url);
+    const jsonResult = await result.json();
+    return jsonResult;
+  }
+);

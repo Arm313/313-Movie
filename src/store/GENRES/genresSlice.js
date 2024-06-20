@@ -34,6 +34,5 @@ export const genresSlice = createSlice({
   },
 });
 
-export const { addMoviesGenres } = genresSlice.actions;
 export const genresReducer = genresSlice.reducer;
 export const selectGenres = (state) => state.genres;

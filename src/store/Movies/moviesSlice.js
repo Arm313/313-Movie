@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllMovies, fetchGetMovie } from "./API";
+import { fetchAllMovies, fetchFilterData, fetchGetMovie, fetchSearchMovies } from "./API";
 
 const initialState = {
   isLoading: false,
@@ -9,6 +9,7 @@ const initialState = {
   upcoming: [],
   watch: {},
   pages: [],
+  filterData: []
 };
 
 export const moviesSlice = createSlice({
@@ -42,6 +43,13 @@ export const moviesSlice = createSlice({
 
     builder.addCase(fetchGetMovie.rejected, (state, action) => {
       state.error = action.error.message;
+    });
+
+    builder.addCase(fetchFilterData.fulfilled, (state, { payload }) => {
+      state.filterData = payload;
+    });
+    builder.addCase(fetchSearchMovies.fulfilled, (state, { payload }) => {
+      state.searchData = payload;
     });
   },
 });

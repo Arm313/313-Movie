@@ -1,0 +1,114 @@
+.filter {
+  width: 100%;
+  margin-bottom: 50px;
+  background: #1f1b2e;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+
+  & .forGenres {
+    position: relative;
+    background: #312b45;
+    width: 200px;
+    padding: 12px 24px;
+    border: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    & .genresSelect {
+      height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      padding: 20px;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 800px;
+      z-index: 999;
+      background: #312b45;
+      transition: all .3s;
+      transform: translateY(-30px);
+      opacity: 0;
+      visibility: hidden;
+
+      & .genre {
+        display: flex;
+        height: 30px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 18px;
+        transition: all .3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #1f1b2e;
+        }
+
+        & input[type="checkbox"] {
+          color: #1f1b2e;
+        }
+
+      }
+    }
+  }
+
+  & .year {
+    width: 200px;
+    height: 48px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 30px;
+    background: #312b45;
+    color: #fff;
+  }
+  & .btn {
+    padding: 8px 12px;
+    font-size: 22px;
+  }
+}
+
+.vis {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.fa-angle-up {
+  transition: all .3s;
+}
+
+.genre {
+  cursor: pointer;
+}
+
+.genre input {
+  display: none;
+}
+
+.genre svg {
+  overflow: visible;
+  width: 15px;
+  height: 15px;
+}
+
+.path {
+  fill: none;
+  stroke: white;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.genre input:checked~svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}

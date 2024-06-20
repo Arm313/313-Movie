@@ -2,10 +2,10 @@ import { Pagination } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const PaginationJsx = ({ page, total_pages ,path}) => {
-    const navigate = useNavigate()
-     const handelChangePage = async (e, value) => {
-        navigate(`/${path == "movies" ? "movies" : "series"}/${path}/${value}?`);
+const PaginationSeries = ({ page, total_pages, path }) => {
+  const navigate = useNavigate();
+  const handelChangePage = (e, value) => {
+    navigate(`/series/${path}/${value}?`);
   };
   return (
     <div className="pagination">
@@ -20,9 +20,10 @@ const PaginationJsx = ({ page, total_pages ,path}) => {
         onChange={handelChangePage}
         count={total_pages}
         color="primary"
+        siblingCount={3}
       />
     </div>
   );
 };
 
-export default PaginationJsx;
+export default PaginationSeries;

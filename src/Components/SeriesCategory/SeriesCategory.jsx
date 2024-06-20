@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { selectTv } from "../../store/TV/TVSlice";
 import Card from "../Card/Card";
-import PaginationJsx from "../PaginationJsx/PaginationJsx";
+import PaginationSeries from "../PaginationSeries/PaginationSeries";
 
 const SeriesCategory = () => {
   const { path } = useParams();
@@ -37,7 +37,7 @@ const SeriesCategory = () => {
             return <Card key={i.id} item={i} />;
           })}
       </div>
-      <PaginationJsx page={page} total_pages={total_pages} path={path} />
+      <PaginationSeries page={page} total_pages={total_pages} path={path} />
     </div>
   );
 };

@@ -47,9 +47,10 @@
        }
        &_date {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
-        font-size: 12px;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 25px;
 
        }
     }

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ScrollTop } from "../../ScrollTop/ScrollTop";
 import { selectMovies } from "../../store/Movies/moviesSlice";
 import Card from "../Card/Card";
-import PaginationJsx from "../PaginationJsx/PaginationJsx";
+import PaginationMovies from "../PaginationMovies/PaginationMovies";
 import "./moviesCategory.scss";
 
 const MoviesCategory = () => {
@@ -29,10 +29,7 @@ const MoviesCategory = () => {
   useEffect(() => {
     ScrollTop();
   }, [page]);
-  const navigate = useNavigate();
-  const handelChangePage = async (e, value) => {
-    navigate(`/movies/${path}/${value}?`);
-  };
+
   return (
     <div className="moviesCategory maxWidth">
       <h1>{pageName}</h1>
@@ -42,8 +39,7 @@ const MoviesCategory = () => {
             return <Card key={i.id} item={i} />;
           })}
       </div>
-      <PaginationJsx page={page} total_pages={total_pages} path={path} /> 
-      {/* kinoyi id poxancel vor similar recommendations hamar pagination grel */}
+      <PaginationMovies page={page} total_pages={total_pages} path={path} />
     </div>
   );
 };

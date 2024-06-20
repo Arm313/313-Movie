@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllSeries, fetchGetSeries } from "./API";
+import { fetchAllSeries, fetchGetSeries, fetchSearchSeries } from "./API";
 
 const initialState = {
   isLoading: false,
@@ -9,6 +9,7 @@ const initialState = {
   top_rated: [],
   watch_tv: {},
   pages: [],
+  searchSeriesData: []
 };
 
 export const TVSlice = createSlice({
@@ -23,7 +24,7 @@ export const TVSlice = createSlice({
     builder.addCase(fetchAllSeries.pending, (state) => {});
     builder.addCase(fetchAllSeries.fulfilled, (state, { payload }) => {
       const { data, property } = payload;
- if (data.page > 1) {
+      if (data.page > 1) {
         state.pages = payload;
       }
       if (data.page == 1) {
@@ -36,10 +37,12 @@ export const TVSlice = createSlice({
       const { data, property } = payload;
       property ? (state.watch_tv[property] = data) : (state.watch_tv = data);
     });
+    builder.addCase(fetchSearchSeries.fulfilled, (state, { payload }) => {
+      state.searchSeriesData = payload;
+    });
   },
 });
 
 export const selectTv = (state) => state.tvShow;
 export const tvShowReduer = TVSlice.reducer;
 export const { setLoading } = TVSlice.actions;
-

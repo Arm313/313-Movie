@@ -8,7 +8,6 @@ const WatchTvSeries = () => {
   const { watch_tv, isLoading } = useSelector(selectTv);
   const { videos, production_companies, name, seasons } = watch_tv;
   const findMovie = videos?.results?.find((i) => i?.type === "Trailer");
-console.log(watch_tv);
   return (
     <div className="watch_movie">
       <div className="watch_movie_left">

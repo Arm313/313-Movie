@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./header.scss";
 import { IoSearch } from "react-icons/io5";
@@ -11,8 +11,9 @@ import { selectGenres } from "../../store/GENRES/genresSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { moviesGenres, tvGenres } = useSelector(selectGenres);
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     dispatch(fetchGetMoviesGenres());
@@ -20,8 +21,8 @@ const Header = () => {
   }, []);
 
   const navlink_series = () => {
-    navigate("/series", {state: {name: "series"}})
-  }
+    navigate("/series", { state: { name: "series" } });
+  };
 
   return (
     <div className="header maxWidth">
@@ -45,9 +46,13 @@ const Header = () => {
         </div>
       </div>
       <div className="header_rigth">
-        <div className="header_rigth_search">
+        <div className="header_rigth_search" onClick={() => {setShow(!show)}}>
           <IoSearch size="20px" />
           <span>Search</span>
+          <div className={`moviesOrSeries ${show && "show"}`}>
+            <NavLink to="/search-movies">Movies</NavLink>
+            <NavLink to="search-series">Series</NavLink>
+          </div>
         </div>
         <div className="header_rigth_notifications">
           <MdOutlineNotifications size="22px" />

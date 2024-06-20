@@ -11,7 +11,7 @@ const store = configureStore(
       movies: moviesReducer,
       tvShow: tvShowReduer,
     },
-  },
+  }
 
   // applyMiddleware(thunk)
 );
